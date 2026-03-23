@@ -1,0 +1,27 @@
+<template>
+  <lightning-card title="Application Pipeline" icon-name="standard:opportunity">
+    <div class="slds-m-around_medium">
+
+      <lightning-combobox
+        label="Filter by Status"
+        value={selectedStatus}
+        options={statusOptions}
+        onchange={handleStatusChange}>
+      </lightning-combobox>
+
+      <template if:true={isLoading}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+      </template>
+
+      <template if:false={isLoading}>
+        <lightning-datatable
+          key-field="Id"
+          data={applications}
+          columns={columns}
+          onrowaction={handleRowAction}>
+        </lightning-datatable>
+      </template>
+
+    </div>
+  </lightning-card>
+</template>
